@@ -1131,6 +1131,535 @@
         </div>
 
         <!-- ============================================================ -->
+        <!-- SECTION: SKILLS -->
+        <!-- ============================================================ -->
+        <div id="section-skills" class="section-content">
+          <!-- Explanatory text -->
+          <div class="bg-blue-50 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-800 rounded-xl p-5 mb-6">
+            <div class="flex items-start gap-3">
+              <i class="fa-solid fa-puzzle-piece text-blue-500 mt-0.5"></i>
+              <p class="text-sm text-blue-700 dark:text-blue-300 leading-relaxed">
+                Las <strong>Skills</strong> son capacidades modulares que puedes adjuntar a cualquier agente. Cada skill añade una habilidad específica — como navegar por la web, leer documentos, o gestionar calendarios. Un agente puede tener una o varias skills activas.
+              </p>
+            </div>
+          </div>
+
+          <!-- Header + Add button -->
+          <div class="flex items-center justify-between mb-6">
+            <div>
+              <h3 class="text-base font-semibold text-slate-700 dark:text-slate-300">
+                <i class="fa-solid fa-puzzle-piece mr-2 text-purple-500"></i>Catálogo de Skills
+              </h3>
+              <p class="text-xs text-slate-400 dark:text-slate-500 mt-1">Total: 6 habilidades disponibles</p>
+            </div>
+            <button class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium rounded-lg transition-colors shadow-sm">
+              <i class="fa-solid fa-plus mr-1"></i> Nueva Skill
+            </button>
+          </div>
+
+          <!-- Skills Table -->
+          <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-700">
+                    <th class="text-left px-5 py-3.5 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Skill</th>
+                    <th class="text-left px-5 py-3.5 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Descripción</th>
+                    <th class="text-left px-5 py-3.5 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Agentes que la usan</th>
+                    <th class="text-right px-5 py-3.5 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-slate-700">
+                  <!-- Skill 1: Web Navigation -->
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/40 transition-colors">
+                    <td class="px-5 py-4">
+                      <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center text-cyan-600 dark:text-cyan-400">
+                          <i class="fa-solid fa-globe text-sm"></i>
+                        </div>
+                        <span class="font-medium text-slate-800 dark:text-white">Web Navigation</span>
+                      </div>
+                    </td>
+                    <td class="px-5 py-4 text-slate-500 dark:text-slate-400 max-w-xs truncate">Navega por la web, extrae contenido y sigue enlaces de forma autónoma.</td>
+                    <td class="px-5 py-4">
+                      <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-cyan-100 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-400">3 agentes</span>
+                      </div>
+                    </td>
+                    <td class="px-5 py-4 text-right">
+                      <div class="dropdown-container relative inline-block">
+                        <button onclick="toggleDropdown(this)" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
+                          <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </button>
+                        <div class="dropdown-menu hidden absolute right-0 mt-1 w-44 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-lg shadow-lg py-1 z-50">
+                          <button onclick="openModal('modal-skill-1'); closeAllDropdowns();" class="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors text-left">
+                            <span>👁</span> Ver detalle
+                          </button>
+                          <button onclick="closeAllDropdowns(); if(confirm('¿Eliminar Web Navigation? Esta acción no se puede deshacer.')) this.closest('tr').remove();" class="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors text-left">
+                            <span>🗑</span> Eliminar
+                          </button>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Skill 2: Document Reader -->
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/40 transition-colors">
+                    <td class="px-5 py-4">
+                      <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-600 dark:text-amber-400">
+                          <i class="fa-solid fa-file-lines text-sm"></i>
+                        </div>
+                        <span class="font-medium text-slate-800 dark:text-white">Document Reader</span>
+                      </div>
+                    </td>
+                    <td class="px-5 py-4 text-slate-500 dark:text-slate-400 max-w-xs truncate">Lee y extrae texto de documentos PDF, DOCX y TXT.</td>
+                    <td class="px-5 py-4">
+                      <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400">4 agentes</span>
+                      </div>
+                    </td>
+                    <td class="px-5 py-4 text-right">
+                      <div class="dropdown-container relative inline-block">
+                        <button onclick="toggleDropdown(this)" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
+                          <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </button>
+                        <div class="dropdown-menu hidden absolute right-0 mt-1 w-44 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-lg shadow-lg py-1 z-50">
+                          <button onclick="openModal('modal-skill-2'); closeAllDropdowns();" class="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors text-left">
+                            <span>👁</span> Ver detalle
+                          </button>
+                          <button onclick="closeAllDropdowns(); if(confirm('¿Eliminar Document Reader? Esta acción no se puede deshacer.')) this.closest('tr').remove();" class="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors text-left">
+                            <span>🗑</span> Eliminar
+                          </button>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Skill 3: Calendar -->
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/40 transition-colors">
+                    <td class="px-5 py-4">
+                      <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-rose-100 dark:bg-rose-900/30 flex items-center justify-center text-rose-600 dark:text-rose-400">
+                          <i class="fa-solid fa-calendar-days text-sm"></i>
+                        </div>
+                        <span class="font-medium text-slate-800 dark:text-white">Calendar</span>
+                      </div>
+                    </td>
+                    <td class="px-5 py-4 text-slate-500 dark:text-slate-400 max-w-xs truncate">Gestiona eventos, citas y recordatorios en calendarios.</td>
+                    <td class="px-5 py-4">
+                      <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400">2 agentes</span>
+                      </div>
+                    </td>
+                    <td class="px-5 py-4 text-right">
+                      <div class="dropdown-container relative inline-block">
+                        <button onclick="toggleDropdown(this)" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
+                          <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </button>
+                        <div class="dropdown-menu hidden absolute right-0 mt-1 w-44 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-lg shadow-lg py-1 z-50">
+                          <button onclick="openModal('modal-skill-3'); closeAllDropdowns();" class="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors text-left">
+                            <span>👁</span> Ver detalle
+                          </button>
+                          <button onclick="closeAllDropdowns(); if(confirm('¿Eliminar Calendar? Esta acción no se puede deshacer.')) this.closest('tr').remove();" class="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors text-left">
+                            <span>🗑</span> Eliminar
+                          </button>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Skill 4: Email -->
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/40 transition-colors">
+                    <td class="px-5 py-4">
+                      <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                          <i class="fa-solid fa-envelope text-sm"></i>
+                        </div>
+                        <span class="font-medium text-slate-800 dark:text-white">Email</span>
+                      </div>
+                    </td>
+                    <td class="px-5 py-4 text-slate-500 dark:text-slate-400 max-w-xs truncate">Envía y gestiona correos electrónicos con plantillas y adjuntos.</td>
+                    <td class="px-5 py-4">
+                      <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400">2 agentes</span>
+                      </div>
+                    </td>
+                    <td class="px-5 py-4 text-right">
+                      <div class="dropdown-container relative inline-block">
+                        <button onclick="toggleDropdown(this)" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
+                          <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </button>
+                        <div class="dropdown-menu hidden absolute right-0 mt-1 w-44 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-lg shadow-lg py-1 z-50">
+                          <button onclick="openModal('modal-skill-4'); closeAllDropdowns();" class="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors text-left">
+                            <span>👁</span> Ver detalle
+                          </button>
+                          <button onclick="closeAllDropdowns(); if(confirm('¿Eliminar Email? Esta acción no se puede deshacer.')) this.closest('tr').remove();" class="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors text-left">
+                            <span>🗑</span> Eliminar
+                          </button>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Skill 5: Data Analyzer -->
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/40 transition-colors">
+                    <td class="px-5 py-4">
+                      <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400">
+                          <i class="fa-solid fa-chart-simple text-sm"></i>
+                        </div>
+                        <span class="font-medium text-slate-800 dark:text-white">Data Analyzer</span>
+                      </div>
+                    </td>
+                    <td class="px-5 py-4 text-slate-500 dark:text-slate-400 max-w-xs truncate">Analiza datos, genera reportes y visualizaciones interactivas.</td>
+                    <td class="px-5 py-4">
+                      <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400">3 agentes</span>
+                      </div>
+                    </td>
+                    <td class="px-5 py-4 text-right">
+                      <div class="dropdown-container relative inline-block">
+                        <button onclick="toggleDropdown(this)" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
+                          <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </button>
+                        <div class="dropdown-menu hidden absolute right-0 mt-1 w-44 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-lg shadow-lg py-1 z-50">
+                          <button onclick="openModal('modal-skill-5'); closeAllDropdowns();" class="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors text-left">
+                            <span>👁</span> Ver detalle
+                          </button>
+                          <button onclick="closeAllDropdowns(); if(confirm('¿Eliminar Data Analyzer? Esta acción no se puede deshacer.')) this.closest('tr').remove();" class="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors text-left">
+                            <span>🗑</span> Eliminar
+                          </button>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Skill 6: Code Interpreter -->
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/40 transition-colors">
+                    <td class="px-5 py-4">
+                      <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400">
+                          <i class="fa-solid fa-code text-sm"></i>
+                        </div>
+                        <span class="font-medium text-slate-800 dark:text-white">Code Interpreter</span>
+                      </div>
+                    </td>
+                    <td class="px-5 py-4 text-slate-500 dark:text-slate-400 max-w-xs truncate">Ejecuta código en múltiples lenguajes de programación.</td>
+                    <td class="px-5 py-4">
+                      <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">2 agentes</span>
+                      </div>
+                    </td>
+                    <td class="px-5 py-4 text-right">
+                      <div class="dropdown-container relative inline-block">
+                        <button onclick="toggleDropdown(this)" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
+                          <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </button>
+                        <div class="dropdown-menu hidden absolute right-0 mt-1 w-44 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-lg shadow-lg py-1 z-50">
+                          <button onclick="openModal('modal-skill-6'); closeAllDropdowns();" class="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors text-left">
+                            <span>👁</span> Ver detalle
+                          </button>
+                          <button onclick="closeAllDropdowns(); if(confirm('¿Eliminar Code Interpreter? Esta acción no se puede deshacer.')) this.closest('tr').remove();" class="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors text-left">
+                            <span>🗑</span> Eliminar
+                          </button>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SKILL MODALS (6) -->
+        <!-- ============================================================ -->
+
+        <!-- Modal Skill 1: Web Navigation -->
+        <div id="modal-skill-1" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop bg-black/50 backdrop-blur-sm">
+          <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-700">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center text-cyan-600 dark:text-cyan-400">
+                  <i class="fa-solid fa-globe"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-slate-800 dark:text-white">Web Navigation</h3>
+              </div>
+              <button onclick="closeModal('modal-skill-1')" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 transition-colors">
+                <i class="fa-solid fa-xmark text-xl"></i>
+              </button>
+            </div>
+            <div class="p-6 space-y-5">
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-1.5">Descripción</p>
+                <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">Permite al agente navegar por sitios web de forma autónoma, hacer clic en enlaces, rellenar formularios, extraer contenido textual y seguir rutas de navegación complejas. Ideal para tareas de investigación y recopilación de información en línea.</p>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-1.5">Casos de uso</p>
+                <ul class="list-disc list-inside text-sm text-slate-600 dark:text-slate-400 space-y-1">
+                  <li>Investigación de mercado y competencia</li>
+                  <li>Extracción de datos de portales web</li>
+                  <li>Monitorización de precios y productos</li>
+                  <li>Rellenado automatizado de formularios</li>
+                </ul>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-1.5">Precio base</p>
+                  <p class="text-lg font-bold text-slate-800 dark:text-white">$49<span class="text-sm font-normal text-slate-400">/mes</span></p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-1.5">Estado</p>
+                  <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">Stable</span>
+                </div>
+              </div>
+            </div>
+            <div class="px-6 pb-5">
+              <button onclick="closeModal('modal-skill-1')" class="w-full py-2.5 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium transition-colors">
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Skill 2: Document Reader -->
+        <div id="modal-skill-2" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop bg-black/50 backdrop-blur-sm">
+          <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-700">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-600 dark:text-amber-400">
+                  <i class="fa-solid fa-file-lines"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-slate-800 dark:text-white">Document Reader</h3>
+              </div>
+              <button onclick="closeModal('modal-skill-2')" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 transition-colors">
+                <i class="fa-solid fa-xmark text-xl"></i>
+              </button>
+            </div>
+            <div class="p-6 space-y-5">
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-1.5">Descripción</p>
+                <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">Capacidad para leer y extraer texto de documentos en formatos PDF, DOCX, TXT y otros formatos comunes. El agente puede procesar documentos completos, buscar palabras clave y resumir contenido extenso de forma eficiente.</p>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-1.5">Casos de uso</p>
+                <ul class="list-disc list-inside text-sm text-slate-600 dark:text-slate-400 space-y-1">
+                  <li>Procesamiento de facturas y contratos</li>
+                  <li>Extracción de datos de informes PDF</li>
+                  <li>Búsqueda semántica en documentación técnica</li>
+                  <li>Resumen automático de documentos largos</li>
+                </ul>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-1.5">Precio base</p>
+                  <p class="text-lg font-bold text-slate-800 dark:text-white">$29<span class="text-sm font-normal text-slate-400">/mes</span></p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-1.5">Estado</p>
+                  <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">Stable</span>
+                </div>
+              </div>
+            </div>
+            <div class="px-6 pb-5">
+              <button onclick="closeModal('modal-skill-2')" class="w-full py-2.5 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium transition-colors">
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Skill 3: Calendar -->
+        <div id="modal-skill-3" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop bg-black/50 backdrop-blur-sm">
+          <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-700">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-rose-100 dark:bg-rose-900/30 flex items-center justify-center text-rose-600 dark:text-rose-400">
+                  <i class="fa-solid fa-calendar-days"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-slate-800 dark:text-white">Calendar</h3>
+              </div>
+              <button onclick="closeModal('modal-skill-3')" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 transition-colors">
+                <i class="fa-solid fa-xmark text-xl"></i>
+              </button>
+            </div>
+            <div class="p-6 space-y-5">
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-1.5">Descripción</p>
+                <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">Permite al agente gestionar calendarios de forma completa: crear y modificar eventos, establecer recordatorios, comprobar disponibilidad, y coordinar agendas entre múltiples participantes. Compatible con los principales proveedores de calendario.</p>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-1.5">Casos de uso</p>
+                <ul class="list-disc list-inside text-sm text-slate-600 dark:text-slate-400 space-y-1">
+                  <li>Agendamiento automático de reuniones</li>
+                  <li>Recordatorios inteligentes de tareas</li>
+                  <li>Sincronización de calendarios entre equipos</li>
+                  <li>Bloqueo de horarios para trabajo profundo</li>
+                </ul>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-1.5">Precio base</p>
+                  <p class="text-lg font-bold text-slate-800 dark:text-white">$19<span class="text-sm font-normal text-slate-400">/mes</span></p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-1.5">Estado</p>
+                  <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">Stable</span>
+                </div>
+              </div>
+            </div>
+            <div class="px-6 pb-5">
+              <button onclick="closeModal('modal-skill-3')" class="w-full py-2.5 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium transition-colors">
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Skill 4: Email -->
+        <div id="modal-skill-4" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop bg-black/50 backdrop-blur-sm">
+          <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-700">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                  <i class="fa-solid fa-envelope"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-slate-800 dark:text-white">Email</h3>
+              </div>
+              <button onclick="closeModal('modal-skill-4')" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 transition-colors">
+                <i class="fa-solid fa-xmark text-xl"></i>
+              </button>
+            </div>
+            <div class="p-6 space-y-5">
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-1.5">Descripción</p>
+                <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">Permite al agente enviar y gestionar correos electrónicos utilizando plantillas personalizables, añadir adjuntos, aplicar etiquetas, y mantener conversaciones en cadena. Incluye soporte para respuestas automáticas basadas en reglas.</p>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-1.5">Casos de uso</p>
+                <ul class="list-disc list-inside text-sm text-slate-600 dark:text-slate-400 space-y-1">
+                  <li>Notificaciones automatizadas a clientes</li>
+                  <li>Respuestas automáticas con plantillas</li>
+                  <li>Clasificación y etiquetado de correos</li>
+                  <li>Seguimiento de campañas de email</li>
+                </ul>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-1.5">Precio base</p>
+                  <p class="text-lg font-bold text-slate-800 dark:text-white">$39<span class="text-sm font-normal text-slate-400">/mes</span></p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-1.5">Estado</p>
+                  <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400">Beta</span>
+                </div>
+              </div>
+            </div>
+            <div class="px-6 pb-5">
+              <button onclick="closeModal('modal-skill-4')" class="w-full py-2.5 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium transition-colors">
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Skill 5: Data Analyzer -->
+        <div id="modal-skill-5" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop bg-black/50 backdrop-blur-sm">
+          <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-700">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400">
+                  <i class="fa-solid fa-chart-simple"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-slate-800 dark:text-white">Data Analyzer</h3>
+              </div>
+              <button onclick="closeModal('modal-skill-5')" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 transition-colors">
+                <i class="fa-solid fa-xmark text-xl"></i>
+              </button>
+            </div>
+            <div class="p-6 space-y-5">
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-1.5">Descripción</p>
+                <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">Skill avanzada de análisis de datos que permite al agente procesar conjuntos de datos, identificar patrones, generar reportes ejecutivos y crear visualizaciones interactivas. Soporta importación de datos desde CSV, JSON y APIs externas.</p>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-1.5">Casos de uso</p>
+                <ul class="list-disc list-inside text-sm text-slate-600 dark:text-slate-400 space-y-1">
+                  <li>Business intelligence y dashboards</li>
+                  <li>Análisis de tendencias de ventas</li>
+                  <li>Segmentación de clientes</li>
+                  <li>Reportes ejecutivos automatizados</li>
+                </ul>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-1.5">Precio base</p>
+                  <p class="text-lg font-bold text-slate-800 dark:text-white">$59<span class="text-sm font-normal text-slate-400">/mes</span></p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-1.5">Estado</p>
+                  <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">Stable</span>
+                </div>
+              </div>
+            </div>
+            <div class="px-6 pb-5">
+              <button onclick="closeModal('modal-skill-5')" class="w-full py-2.5 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium transition-colors">
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Skill 6: Code Interpreter -->
+        <div id="modal-skill-6" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop bg-black/50 backdrop-blur-sm">
+          <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-700">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400">
+                  <i class="fa-solid fa-code"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-slate-800 dark:text-white">Code Interpreter</h3>
+              </div>
+              <button onclick="closeModal('modal-skill-6')" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 transition-colors">
+                <i class="fa-solid fa-xmark text-xl"></i>
+              </button>
+            </div>
+            <div class="p-6 space-y-5">
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-1.5">Descripción</p>
+                <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">Permite al agente escribir, ejecutar y depurar código en múltiples lenguajes (Python, JavaScript, Ruby, etc.). Puede instalar paquetes, manejar dependencias, y devolver resultados de ejecución. Ideal para tareas de automatización y procesamiento de datos complejo.</p>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-1.5">Casos de uso</p>
+                <ul class="list-disc list-inside text-sm text-slate-600 dark:text-slate-400 space-y-1">
+                  <li>Automatización de tareas repetitivas</li>
+                  <li>Procesamiento y transformación de datos</li>
+                  <li>Generación de informes dinámicos</li>
+                  <li>Prototipado rápido de soluciones</li>
+                </ul>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-1.5">Precio base</p>
+                  <p class="text-lg font-bold text-slate-800 dark:text-white">$79<span class="text-sm font-normal text-slate-400">/mes</span></p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-1.5">Estado</p>
+                  <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400">Beta</span>
+                </div>
+              </div>
+            </div>
+            <div class="px-6 pb-5">
+              <button onclick="closeModal('modal-skill-6')" class="w-full py-2.5 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium transition-colors">
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
         <!-- SECTION: RENTALS (placeholder — next commit) -->
         <!-- ============================================================ -->
         <div id="section-rentals" class="section-content">
