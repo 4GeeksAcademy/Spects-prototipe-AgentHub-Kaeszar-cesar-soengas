@@ -41,6 +41,10 @@
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 3px; }
     .dark ::-webkit-scrollbar-thumb { background: #475569; }
+    /* Skills collapsible transition */
+    .skills-list {
+      transition: max-height 0.3s ease-out, opacity 0.3s ease-out !important;
+    }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-200 min-h-screen">
@@ -693,10 +697,437 @@
         </div>
 
         <!-- ============================================================ -->
-        <!-- SECTION: SKILLS (placeholder — next commit) -->
+        <!-- SECTION: AGENTS -->
         <!-- ============================================================ -->
-        <div id="section-skills" class="section-content">
-          <p class="text-slate-400 dark:text-slate-500">Sección de skills — próximamente.</p>
+        <div id="section-agents" class="section-content">
+          <!-- Section Header -->
+          <div class="flex items-center justify-between mb-6">
+            <div>
+              <h3 class="text-base font-semibold text-slate-700 dark:text-slate-300">
+                <i class="fa-solid fa-robot mr-2 text-blue-500"></i>Agentes de IA
+              </h3>
+              <p class="text-xs text-slate-400 dark:text-slate-500 mt-1">Total: 5 agentes registrados</p>
+            </div>
+          </div>
+
+          <!-- Agents Table -->
+          <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50">
+                    <th class="text-left px-4 py-3 font-semibold text-slate-600 dark:text-slate-400 text-xs uppercase tracking-wider">Agente</th>
+                    <th class="text-left px-4 py-3 font-semibold text-slate-600 dark:text-slate-400 text-xs uppercase tracking-wider">Propietario</th>
+                    <th class="text-left px-4 py-3 font-semibold text-slate-600 dark:text-slate-400 text-xs uppercase tracking-wider">Estado</th>
+                    <th class="text-left px-4 py-3 font-semibold text-slate-600 dark:text-slate-400 text-xs uppercase tracking-wider">Skills</th>
+                    <th class="text-right px-4 py-3 font-semibold text-slate-600 dark:text-slate-400 text-xs uppercase tracking-wider">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Agent 1 -->
+                  <tr class="border-b border-slate-100 dark:border-slate-700/50 hover:bg-slate-50 dark:hover:bg-slate-700/30 transition-colors" data-agent-id="1">
+                    <td class="px-4 py-3">
+                      <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white text-xs font-bold">A1</div>
+                        <span class="font-medium text-slate-800 dark:text-slate-200">DataBot</span>
+                      </div>
+                    </td>
+                    <td class="px-4 py-3 text-slate-500 dark:text-slate-400">carlos.mendoza@empresa.com</td>
+                    <td class="px-4 py-3"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">Activo</span></td>
+                    <td class="px-4 py-3">
+                      <div class="skills-collapsible">
+                        <button onclick="toggleSkills(this)" class="flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:text-blue-700 text-xs font-medium transition-colors">
+                          <span>3 skills ›</span>
+                          <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-300"></i>
+                        </button>
+                        <div class="skills-list hidden mt-2 space-y-1 overflow-hidden transition-all duration-300 max-h-0 opacity-0">
+                          <div class="flex flex-wrap gap-1.5">
+                            <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300">Web Nav</span>
+                            <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300">Docs Reader</span>
+                            <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300">Data Analyzer</span>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="px-4 py-3 text-right dropdown-container">
+                      <button onclick="toggleDropdown(this)" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 dark:text-slate-500 transition-colors">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                      </button>
+                      <div class="dropdown-menu hidden fixed z-50 w-44 bg-white dark:bg-slate-700 rounded-lg shadow-lg border border-slate-200 dark:border-slate-600 py-1">
+                        <button onclick="openModal('modal-agent-1')" class="w-full text-left px-3 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors flex items-center gap-2">
+                          <i class="fa-solid fa-gear text-slate-400"></i> Configurar
+                        </button>
+                        <button onclick="if(confirm('¿Eliminar agente DataBot?'))this.closest('tr').remove()" class="w-full text-left px-3 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors flex items-center gap-2">
+                          <i class="fa-solid fa-trash-can"></i> Eliminar
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Agent 2 -->
+                  <tr class="border-b border-slate-100 dark:border-slate-700/50 hover:bg-slate-50 dark:hover:bg-slate-700/30 transition-colors" data-agent-id="2">
+                    <td class="px-4 py-3">
+                      <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-white text-xs font-bold">A2</div>
+                        <span class="font-medium text-slate-800 dark:text-slate-200">MailAssist</span>
+                      </div>
+                    </td>
+                    <td class="px-4 py-3 text-slate-500 dark:text-slate-400">ana.garcia@startup.io</td>
+                    <td class="px-4 py-3"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">Activo</span></td>
+                    <td class="px-4 py-3">
+                      <div class="skills-collapsible">
+                        <button onclick="toggleSkills(this)" class="flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:text-blue-700 text-xs font-medium transition-colors">
+                          <span>2 skills ›</span>
+                          <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-300"></i>
+                        </button>
+                        <div class="skills-list hidden mt-2 space-y-1 overflow-hidden transition-all duration-300 max-h-0 opacity-0">
+                          <div class="flex flex-wrap gap-1.5">
+                            <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300">Email</span>
+                            <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300">Calendar</span>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="px-4 py-3 text-right dropdown-container">
+                      <button onclick="toggleDropdown(this)" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 dark:text-slate-500 transition-colors">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                      </button>
+                      <div class="dropdown-menu hidden fixed z-50 w-44 bg-white dark:bg-slate-700 rounded-lg shadow-lg border border-slate-200 dark:border-slate-600 py-1">
+                        <button onclick="openModal('modal-agent-2')" class="w-full text-left px-3 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors flex items-center gap-2">
+                          <i class="fa-solid fa-gear text-slate-400"></i> Configurar
+                        </button>
+                        <button onclick="if(confirm('¿Eliminar agente MailAssist?'))this.closest('tr').remove()" class="w-full text-left px-3 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors flex items-center gap-2">
+                          <i class="fa-solid fa-trash-can"></i> Eliminar
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Agent 3 -->
+                  <tr class="border-b border-slate-100 dark:border-slate-700/50 hover:bg-slate-50 dark:hover:bg-slate-700/30 transition-colors" data-agent-id="3">
+                    <td class="px-4 py-3">
+                      <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center text-white text-xs font-bold">A3</div>
+                        <span class="font-medium text-slate-800 dark:text-slate-200">WebScraper</span>
+                      </div>
+                    </td>
+                    <td class="px-4 py-3 text-slate-500 dark:text-slate-400">sofia@healthdata.org</td>
+                    <td class="px-4 py-3"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">Activo</span></td>
+                    <td class="px-4 py-3">
+                      <div class="skills-collapsible">
+                        <button onclick="toggleSkills(this)" class="flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:text-blue-700 text-xs font-medium transition-colors">
+                          <span>2 skills ›</span>
+                          <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-300"></i>
+                        </button>
+                        <div class="skills-list hidden mt-2 space-y-1 overflow-hidden transition-all duration-300 max-h-0 opacity-0">
+                          <div class="flex flex-wrap gap-1.5">
+                            <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300">Web Nav</span>
+                            <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300">Docs Reader</span>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="px-4 py-3 text-right dropdown-container">
+                      <button onclick="toggleDropdown(this)" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 dark:text-slate-500 transition-colors">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                      </button>
+                      <div class="dropdown-menu hidden fixed z-50 w-44 bg-white dark:bg-slate-700 rounded-lg shadow-lg border border-slate-200 dark:border-slate-600 py-1">
+                        <button onclick="openModal('modal-agent-3')" class="w-full text-left px-3 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors flex items-center gap-2">
+                          <i class="fa-solid fa-gear text-slate-400"></i> Configurar
+                        </button>
+                        <button onclick="if(confirm('¿Eliminar agente WebScraper?'))this.closest('tr').remove()" class="w-full text-left px-3 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors flex items-center gap-2">
+                          <i class="fa-solid fa-trash-can"></i> Eliminar
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Agent 4 -->
+                  <tr class="border-b border-slate-100 dark:border-slate-700/50 hover:bg-slate-50 dark:hover:bg-slate-700/30 transition-colors" data-agent-id="4">
+                    <td class="px-4 py-3">
+                      <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-white text-xs font-bold">A4</div>
+                        <span class="font-medium text-slate-800 dark:text-slate-200">CalBot</span>
+                      </div>
+                    </td>
+                    <td class="px-4 py-3 text-slate-500 dark:text-slate-400">mtorres@financeapp.com</td>
+                    <td class="px-4 py-3"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400">Fallando</span></td>
+                    <td class="px-4 py-3">
+                      <div class="skills-collapsible">
+                        <button onclick="toggleSkills(this)" class="flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:text-blue-700 text-xs font-medium transition-colors">
+                          <span>1 skill ›</span>
+                          <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-300"></i>
+                        </button>
+                        <div class="skills-list hidden mt-2 space-y-1 overflow-hidden transition-all duration-300 max-h-0 opacity-0">
+                          <div class="flex flex-wrap gap-1.5">
+                            <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300">Calendar</span>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="px-4 py-3 text-right dropdown-container">
+                      <button onclick="toggleDropdown(this)" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 dark:text-slate-500 transition-colors">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                      </button>
+                      <div class="dropdown-menu hidden fixed z-50 w-44 bg-white dark:bg-slate-700 rounded-lg shadow-lg border border-slate-200 dark:border-slate-600 py-1">
+                        <button onclick="openModal('modal-agent-4')" class="w-full text-left px-3 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors flex items-center gap-2">
+                          <i class="fa-solid fa-gear text-slate-400"></i> Configurar
+                        </button>
+                        <button onclick="if(confirm('¿Eliminar agente CalBot?'))this.closest('tr').remove()" class="w-full text-left px-3 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors flex items-center gap-2">
+                          <i class="fa-solid fa-trash-can"></i> Eliminar
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Agent 5 -->
+                  <tr class="border-b-0 border-slate-100 dark:border-slate-700/50 hover:bg-slate-50 dark:hover:bg-slate-700/30 transition-colors" data-agent-id="5">
+                    <td class="px-4 py-3">
+                      <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-rose-400 to-rose-600 flex items-center justify-center text-white text-xs font-bold">A5</div>
+                        <span class="font-medium text-slate-800 dark:text-slate-200">CodeReviewer</span>
+                      </div>
+                    </td>
+                    <td class="px-4 py-3 text-slate-500 dark:text-slate-400">roberto@techcorp.com</td>
+                    <td class="px-4 py-3"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-400">Inactivo</span></td>
+                    <td class="px-4 py-3">
+                      <div class="skills-collapsible">
+                        <button onclick="toggleSkills(this)" class="flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:text-blue-700 text-xs font-medium transition-colors">
+                          <span>2 skills ›</span>
+                          <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-300"></i>
+                        </button>
+                        <div class="skills-list hidden mt-2 space-y-1 overflow-hidden transition-all duration-300 max-h-0 opacity-0">
+                          <div class="flex flex-wrap gap-1.5">
+                            <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300">Code Interpreter</span>
+                            <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300">Data Analyzer</span>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="px-4 py-3 text-right dropdown-container">
+                      <button onclick="toggleDropdown(this)" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 dark:text-slate-500 transition-colors">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                      </button>
+                      <div class="dropdown-menu hidden fixed z-50 w-44 bg-white dark:bg-slate-700 rounded-lg shadow-lg border border-slate-200 dark:border-slate-600 py-1">
+                        <button onclick="openModal('modal-agent-5')" class="w-full text-left px-3 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors flex items-center gap-2">
+                          <i class="fa-solid fa-gear text-slate-400"></i> Configurar
+                        </button>
+                        <button onclick="if(confirm('¿Eliminar agente CodeReviewer?'))this.closest('tr').remove()" class="w-full text-left px-3 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors flex items-center gap-2">
+                          <i class="fa-solid fa-trash-can"></i> Eliminar
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== AGENT MODALS ===== -->
+        <!-- Modal Agent 1: DataBot -->
+        <div id="modal-agent-1" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div class="modal-backdrop fixed inset-0 bg-black/50 backdrop-blur-sm"></div>
+          <div class="relative bg-white dark:bg-slate-800 rounded-xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between p-5 border-b border-slate-200 dark:border-slate-700">
+              <h3 class="text-lg font-semibold text-slate-800 dark:text-white flex items-center gap-2">
+                <i class="fa-solid fa-robot text-blue-500"></i> Configurar: DataBot
+              </h3>
+              <button onclick="closeModal('modal-agent-1')" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 transition-colors">
+                <i class="fa-solid fa-xmark text-xl"></i>
+              </button>
+            </div>
+            <div class="p-5 space-y-4">
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-2">Propietario</p>
+                <p class="text-sm text-slate-700 dark:text-slate-300">carlos.mendoza@empresa.com</p>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-2">System Prompt</p>
+                <textarea readonly class="w-full h-32 px-3 py-2 text-xs font-mono bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-600 rounded-lg text-slate-700 dark:text-slate-300 resize-none">Eres DataBot, un asistente de análisis de datos. Tu función es procesar, analizar y visualizar datos empresariales. Puedes navegar por la web para recopilar información, leer documentos subidos por el usuario y generar informes detallados. Respondes preguntas sobre tendencias, patrones y anomalías en los datos.</textarea>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-2">Skills asignadas</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400">Web Navigation</span>
+                  <span class="px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">Document Reader</span>
+                  <span class="px-2.5 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400">Data Analyzer</span>
+                </div>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-2">Estado</p>
+                <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">Activo</span>
+              </div>
+            </div>
+            <div class="px-5 pb-5">
+              <button onclick="closeModal('modal-agent-1')" class="w-full py-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium transition-colors">
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Agent 2: MailAssist -->
+        <div id="modal-agent-2" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div class="modal-backdrop fixed inset-0 bg-black/50 backdrop-blur-sm"></div>
+          <div class="relative bg-white dark:bg-slate-800 rounded-xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between p-5 border-b border-slate-200 dark:border-slate-700">
+              <h3 class="text-lg font-semibold text-slate-800 dark:text-white flex items-center gap-2">
+                <i class="fa-solid fa-robot text-blue-500"></i> Configurar: MailAssist
+              </h3>
+              <button onclick="closeModal('modal-agent-2')" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 transition-colors">
+                <i class="fa-solid fa-xmark text-xl"></i>
+              </button>
+            </div>
+            <div class="p-5 space-y-4">
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-2">Propietario</p>
+                <p class="text-sm text-slate-700 dark:text-slate-300">ana.garcia@startup.io</p>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-2">System Prompt</p>
+                <textarea readonly class="w-full h-32 px-3 py-2 text-xs font-mono bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-600 rounded-lg text-slate-700 dark:text-slate-300 resize-none">Eres MailAssist, un asistente de gestión de correo electrónico y calendario. Tu función es leer, clasificar y responder correos, así como gestionar eventos de calendario. Puedes programar reuniones, enviar recordatorios y mantener la bandeja de entrada organizada para el usuario.</textarea>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-2">Skills asignadas</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400">Email</span>
+                  <span class="px-2.5 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400">Calendar</span>
+                </div>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-2">Estado</p>
+                <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">Activo</span>
+              </div>
+            </div>
+            <div class="px-5 pb-5">
+              <button onclick="closeModal('modal-agent-2')" class="w-full py-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium transition-colors">
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Agent 3: WebScraper -->
+        <div id="modal-agent-3" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div class="modal-backdrop fixed inset-0 bg-black/50 backdrop-blur-sm"></div>
+          <div class="relative bg-white dark:bg-slate-800 rounded-xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between p-5 border-b border-slate-200 dark:border-slate-700">
+              <h3 class="text-lg font-semibold text-slate-800 dark:text-white flex items-center gap-2">
+                <i class="fa-solid fa-robot text-blue-500"></i> Configurar: WebScraper
+              </h3>
+              <button onclick="closeModal('modal-agent-3')" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 transition-colors">
+                <i class="fa-solid fa-xmark text-xl"></i>
+              </button>
+            </div>
+            <div class="p-5 space-y-4">
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-2">Propietario</p>
+                <p class="text-sm text-slate-700 dark:text-slate-300">sofia@healthdata.org</p>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-2">System Prompt</p>
+                <textarea readonly class="w-full h-32 px-3 py-2 text-xs font-mono bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-600 rounded-lg text-slate-700 dark:text-slate-300 resize-none">Eres WebScraper, un asistente de extracción de datos web. Tu función es navegar por sitios web, extraer información estructurada y presentarla en formatos útiles. Puedes leer documentos PDF y páginas HTML, y exportar datos a CSV o JSON.</textarea>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-2">Skills asignadas</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400">Web Navigation</span>
+                  <span class="px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">Document Reader</span>
+                </div>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-2">Estado</p>
+                <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">Activo</span>
+              </div>
+            </div>
+            <div class="px-5 pb-5">
+              <button onclick="closeModal('modal-agent-3')" class="w-full py-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium transition-colors">
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Agent 4: CalBot -->
+        <div id="modal-agent-4" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div class="modal-backdrop fixed inset-0 bg-black/50 backdrop-blur-sm"></div>
+          <div class="relative bg-white dark:bg-slate-800 rounded-xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between p-5 border-b border-slate-200 dark:border-slate-700">
+              <h3 class="text-lg font-semibold text-slate-800 dark:text-white flex items-center gap-2">
+                <i class="fa-solid fa-robot text-blue-500"></i> Configurar: CalBot
+              </h3>
+              <button onclick="closeModal('modal-agent-4')" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 transition-colors">
+                <i class="fa-solid fa-xmark text-xl"></i>
+              </button>
+            </div>
+            <div class="p-5 space-y-4">
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-2">Propietario</p>
+                <p class="text-sm text-slate-700 dark:text-slate-300">mtorres@financeapp.com</p>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-2">System Prompt</p>
+                <textarea readonly class="w-full h-32 px-3 py-2 text-xs font-mono bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-600 rounded-lg text-slate-700 dark:text-slate-300 resize-none">Eres CalBot, un asistente de gestión de calendario. Tu función es programar reuniones, gestionar eventos, enviar recordatorios y optimizar la agenda del usuario. Puedes coordinar horarios entre múltiples participantes y sugerir mejores franjas horarias.</textarea>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-2">Skills asignadas</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400">Calendar</span>
+                </div>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-2">Estado</p>
+                <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400">Fallando</span>
+              </div>
+            </div>
+            <div class="px-5 pb-5">
+              <button onclick="closeModal('modal-agent-4')" class="w-full py-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium transition-colors">
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Agent 5: CodeReviewer -->
+        <div id="modal-agent-5" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div class="modal-backdrop fixed inset-0 bg-black/50 backdrop-blur-sm"></div>
+          <div class="relative bg-white dark:bg-slate-800 rounded-xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between p-5 border-b border-slate-200 dark:border-slate-700">
+              <h3 class="text-lg font-semibold text-slate-800 dark:text-white flex items-center gap-2">
+                <i class="fa-solid fa-robot text-blue-500"></i> Configurar: CodeReviewer
+              </h3>
+              <button onclick="closeModal('modal-agent-5')" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 transition-colors">
+                <i class="fa-solid fa-xmark text-xl"></i>
+              </button>
+            </div>
+            <div class="p-5 space-y-4">
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-2">Propietario</p>
+                <p class="text-sm text-slate-700 dark:text-slate-300">roberto@techcorp.com</p>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-2">System Prompt</p>
+                <textarea readonly class="w-full h-32 px-3 py-2 text-xs font-mono bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-600 rounded-lg text-slate-700 dark:text-slate-300 resize-none">Eres CodeReviewer, un asistente de revisión de código. Tu función es analizar código fuente, identificar errores, sugerir mejoras y asegurar que cumple con las mejores prácticas. Puedes ejecutar análisis estático y generar informes de calidad de código.</textarea>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-2">Skills asignadas</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-medium bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400">Code Interpreter</span>
+                  <span class="px-2.5 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400">Data Analyzer</span>
+                </div>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-2">Estado</p>
+                <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-400">Inactivo</span>
+              </div>
+            </div>
+            <div class="px-5 pb-5">
+              <button onclick="closeModal('modal-agent-5')" class="w-full py-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium transition-colors">
+                Cerrar
+              </button>
+            </div>
+          </div>
         </div>
 
         <!-- ============================================================ -->
@@ -906,6 +1337,35 @@
         closeModal();
       }
     });
+
+    // ============================================================
+    // SKILLS COLLAPSIBLE (used by Agents section)
+    // ============================================================
+    function toggleSkills(btnEl) {
+      const container = btnEl.closest('.skills-collapsible');
+      const list = container.querySelector('.skills-list');
+      const icon = btnEl.querySelector('.fa-chevron-down');
+      const span = btnEl.querySelector('span');
+      const skillCount = list.querySelectorAll('.flex-wrap > span').length;
+
+      const isOpen = !list.classList.contains('hidden');
+
+      if (isOpen) {
+        // Collapse
+        list.style.maxHeight = '0';
+        list.style.opacity = '0';
+        icon.style.transform = 'rotate(0deg)';
+        span.textContent = skillCount + ' skills ›';
+        setTimeout(() => { list.classList.add('hidden'); }, 300);
+      } else {
+        // Expand
+        list.classList.remove('hidden');
+        list.style.maxHeight = list.scrollHeight + 'px';
+        list.style.opacity = '1';
+        icon.style.transform = 'rotate(180deg)';
+        span.textContent = skillCount + ' skills ▼';
+      }
+    }
 
     // ============================================================
     // INIT: Set default active section
