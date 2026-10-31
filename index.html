@@ -144,9 +144,119 @@
       </header>
 
       <!-- ===== MAIN CONTENT AREA ===== -->
-      <main class="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8">
-        <!-- Each section is a div with class "section-content" -->
-        <!-- Sections will be added in subsequent commits -->
+      <main class="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 space-y-8">
+        <!-- ============================================================ -->
+        <!-- SECTION: DASHBOARD -->
+        <!-- ============================================================ -->
+        <div id="section-dashboard" class="section-content">
+          <!-- Metric Cards Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-8">
+            <!-- Card 1: Ingresos Totales -->
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-5 border-l-4 border-blue-500 hover:shadow-lg transition-shadow">
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-sm text-slate-500 dark:text-slate-400 font-medium">Ingresos Totales</p>
+                  <p class="text-2xl font-bold text-slate-800 dark:text-white mt-1">$12,430</p>
+                  <p class="text-xs text-green-500 mt-1"><i class="fa-solid fa-arrow-up mr-1"></i>+12% vs mes anterior</p>
+                </div>
+                <div class="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                  <i class="fa-solid fa-chart-line text-xl"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2: Pérdida por Descuentos -->
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-5 border-l-4 border-amber-500 hover:shadow-lg transition-shadow">
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-sm text-slate-500 dark:text-slate-400 font-medium">Pérdida por Descuentos</p>
+                  <p class="text-2xl font-bold text-slate-800 dark:text-white mt-1">$940</p>
+                  <p class="text-xs text-amber-500 mt-1"><i class="fa-solid fa-minus mr-1"></i>3% de ingresos totales</p>
+                </div>
+                <div class="w-12 h-12 rounded-lg bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-600 dark:text-amber-400">
+                  <i class="fa-solid fa-tag text-xl"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3: Agentes Activos -->
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-5 border-l-4 border-green-500 hover:shadow-lg transition-shadow">
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-sm text-slate-500 dark:text-slate-400 font-medium">Agentes Activos</p>
+                  <p class="text-2xl font-bold text-slate-800 dark:text-white mt-1">24</p>
+                  <p class="text-xs text-green-500 mt-1"><i class="fa-solid fa-arrow-up mr-1"></i>+3 esta semana</p>
+                </div>
+                <div class="w-12 h-12 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400">
+                  <i class="fa-solid fa-robot text-xl"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 4: Agentes Fallando -->
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-5 border-l-4 border-red-500 hover:shadow-lg transition-shadow">
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-sm text-slate-500 dark:text-slate-400 font-medium">Agentes Fallando</p>
+                  <p class="text-2xl font-bold text-slate-800 dark:text-white mt-1">3</p>
+                  <p class="text-xs text-red-500 mt-1"><i class="fa-solid fa-exclamation-circle mr-1"></i>Requiere atención</p>
+                </div>
+                <div class="w-12 h-12 rounded-lg bg-red-100 dark:bg-red-900/30 flex items-center justify-center text-red-600 dark:text-red-400">
+                  <i class="fa-solid fa-exclamation-triangle text-xl"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chart Placeholder -->
+          <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-6">
+            <h3 class="text-base font-semibold text-slate-700 dark:text-slate-300 mb-4">
+              <i class="fa-solid fa-chart-simple mr-2 text-blue-500"></i>Actividad Semanal
+            </h3>
+            <div class="border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-xl h-64 flex items-center justify-center bg-slate-50/50 dark:bg-slate-800/50">
+              <div class="text-center space-y-2">
+                <i class="fa-solid fa-chart-bar text-4xl text-slate-300 dark:text-slate-600"></i>
+                <p class="text-slate-400 dark:text-slate-500 font-medium">📊 Gráfico de actividad semanal</p>
+                <p class="text-xs text-slate-300 dark:text-slate-600">(próximamente)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SECTION: USERS (placeholder — next commit) -->
+        <!-- ============================================================ -->
+        <div id="section-users" class="section-content">
+          <p class="text-slate-400 dark:text-slate-500">Sección de usuarios — próximamente.</p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SECTION: AGENTS (placeholder — next commit) -->
+        <!-- ============================================================ -->
+        <div id="section-agents" class="section-content">
+          <p class="text-slate-400 dark:text-slate-500">Sección de agentes — próximamente.</p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SECTION: SKILLS (placeholder — next commit) -->
+        <!-- ============================================================ -->
+        <div id="section-skills" class="section-content">
+          <p class="text-slate-400 dark:text-slate-500">Sección de skills — próximamente.</p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SECTION: RENTALS (placeholder — next commit) -->
+        <!-- ============================================================ -->
+        <div id="section-rentals" class="section-content">
+          <p class="text-slate-400 dark:text-slate-500">Sección de contrataciones — próximamente.</p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SECTION: ERRORS (placeholder — next commit) -->
+        <!-- ============================================================ -->
+        <div id="section-errors" class="section-content">
+          <p class="text-slate-400 dark:text-slate-500">Sección de log de errores — próximamente.</p>
+        </div>
       </main>
     </div>
   </div>
@@ -164,19 +274,13 @@
       errors:    { title: 'Log de Errores', meta: 'Registro de errores de ejecución' },
     };
 
-    let currentSection = 'dashboard';
     const sidebarLinks = document.querySelectorAll('.sidebar-link');
     const sectionTitle = document.getElementById('sectionTitle');
     const sectionMeta = document.getElementById('sectionMeta');
     const mainContent = document.querySelector('main');
+    let currentSection = 'dashboard';
 
-    // Create section containers dynamically
-    Object.keys(sections).forEach(key => {
-      const div = document.createElement('div');
-      div.id = `section-${key}`;
-      div.className = 'section-content';
-      mainContent.appendChild(div);
-    });
+    // No dynamic creation needed — sections are in the HTML
 
     function navigateTo(sectionId) {
       // Update sidebar active state
