@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgentHub — Admin Panel</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome 6 via CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    /* Sidebar transitions */
+    .sidebar-link {
+      transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+    }
+    /* Section transitions */
+    .section-content {
+      display: none;
+    }
+    .section-content.active {
+      display: block;
+    }
+    /* Smooth dark mode transition */
+    .dark body,
+    body.dark {
+      background-color: #0f172a !important;
+      color: #e2e8f0;
+    }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 3px; }
+    .dark ::-webkit-scrollbar-thumb { background: #475569; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-200 min-h-screen">
+  <script>
+    // Tailwind dark mode config
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <div class="flex h-screen overflow-hidden">
+    <!-- ===== SIDEBAR ===== -->
+    <aside id="sidebar" class="fixed md:relative z-30 w-64 h-full bg-slate-900 text-slate-300 flex flex-col transition-all duration-300 -translate-x-full md:translate-x-0 dark:bg-slate-950">
+      <!-- Sidebar Header -->
+      <div class="flex items-center gap-3 px-6 py-5 border-b border-slate-700 dark:border-slate-800">
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-sm font-bold shadow-lg shadow-blue-500/20">
+          AH
+        </div>
+        <div>
+          <h1 class="text-lg font-bold text-white tracking-tight">AgentHub</h1>
+          <p class="text-xs text-slate-500 -mt-0.5">Admin Panel</p>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+        <p class="px-3 text-xs font-semibold text-slate-500 uppercase tracking-widest mb-3">Menu</p>
+
+        <button class="sidebar-link w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all group" data-section="dashboard">
+          <i class="fa-solid fa-chart-pie w-5 text-center text-sm"></i>
+          <span class="text-sm font-medium">Dashboard</span>
+        </button>
+
+        <button class="sidebar-link w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all group" data-section="users">
+          <i class="fa-solid fa-users w-5 text-center text-sm"></i>
+          <span class="text-sm font-medium">Usuarios</span>
+        </button>
+
+        <button class="sidebar-link w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all group" data-section="agents">
+          <i class="fa-solid fa-robot w-5 text-center text-sm"></i>
+          <span class="text-sm font-medium">Agentes</span>
+        </button>
+
+        <button class="sidebar-link w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all group" data-section="skills">
+          <i class="fa-solid fa-puzzle-piece w-5 text-center text-sm"></i>
+          <span class="text-sm font-medium">Skills</span>
+        </button>
+
+        <button class="sidebar-link w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all group" data-section="rentals">
+          <i class="fa-solid fa-file-contract w-5 text-center text-sm"></i>
+          <span class="text-sm font-medium">Contrataciones</span>
+        </button>
+
+        <button class="sidebar-link w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all group" data-section="errors">
+          <i class="fa-solid fa-bug w-5 text-center text-sm"></i>
+          <span class="text-sm font-medium">Log de Errores</span>
+        </button>
+      </nav>
+
+      <!-- Sidebar Footer -->
+      <div class="px-3 pb-4 border-t border-slate-700 dark:border-slate-800 pt-3">
+        <button class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-red-400 hover:bg-slate-800/60 transition-all">
+          <i class="fa-solid fa-right-from-bracket w-5 text-center text-sm"></i>
+          <span class="text-sm font-medium">Cerrar Sesión</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Backdrop for mobile sidebar -->
+    <div id="sidebarBackdrop" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-20 hidden md:hidden transition-opacity"></div>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <div class="flex-1 flex flex-col min-h-screen w-full md:w-auto overflow-hidden">
+      <!-- ===== TOP BAR ===== -->
+      <header class="sticky top-0 z-10 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 shadow-sm px-4 md:px-6 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <!-- Mobile hamburger -->
+          <button id="sidebarToggle" class="md:hidden p-2 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+            <i class="fa-solid fa-bars text-lg"></i>
+          </button>
+          <h2 id="sectionTitle" class="text-lg font-semibold text-slate-800 dark:text-white tracking-tight">Dashboard</h2>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <!-- Breadcrumb / meta info -->
+          <span id="sectionMeta" class="text-xs text-slate-400 dark:text-slate-500 hidden sm:inline">Visión general del negocio</span>
+          <!-- Dark Mode Toggle -->
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="darkModeToggle" class="sr-only peer">
+            <div class="w-11 h-6 bg-slate-200 dark:bg-slate-600 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+            <i class="fa-solid fa-moon ml-2 text-sm text-slate-400 dark:text-yellow-400 transition-colors"></i>
+          </label>
+        </div>
+      </header>
+
+      <!-- ===== MAIN CONTENT AREA ===== -->
+      <main class="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8">
+        <!-- Each section is a div with class "section-content" -->
+        <!-- Sections will be added in subsequent commits -->
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // ============================================================
+    // NAVEGACIÓN ENTRE SECCIONES
+    // ============================================================
+    const sections = {
+      dashboard: { title: 'Dashboard', meta: 'Visión general del negocio' },
+      users:     { title: 'Usuarios', meta: 'Gestión de usuarios registrados' },
+      agents:    { title: 'Agentes', meta: 'Gestión de agentes de IA' },
+      skills:    { title: 'Skills', meta: 'Catálogo de habilidades disponibles' },
+      rentals:   { title: 'Contrataciones', meta: 'Contratos de alquiler de agentes' },
+      errors:    { title: 'Log de Errores', meta: 'Registro de errores de ejecución' },
+    };
+
+    let currentSection = 'dashboard';
+    const sidebarLinks = document.querySelectorAll('.sidebar-link');
+    const sectionTitle = document.getElementById('sectionTitle');
+    const sectionMeta = document.getElementById('sectionMeta');
+    const mainContent = document.querySelector('main');
+
+    // Create section containers dynamically
+    Object.keys(sections).forEach(key => {
+      const div = document.createElement('div');
+      div.id = `section-${key}`;
+      div.className = 'section-content';
+      mainContent.appendChild(div);
+    });
+
+    function navigateTo(sectionId) {
+      // Update sidebar active state
+      sidebarLinks.forEach(link => {
+        link.classList.remove('active', 'bg-slate-800/80', 'text-white', 'border-l-2', 'border-blue-400');
+        if (link.dataset.section === sectionId) {
+          link.classList.add('active', 'bg-slate-800/80', 'text-white', 'border-l-2', 'border-blue-400');
+        }
+      });
+
+      // Update section visibility
+      document.querySelectorAll('.section-content').forEach(el => {
+        el.classList.remove('active');
+      });
+      const target = document.getElementById(`section-${sectionId}`);
+      if (target) target.classList.add('active');
+
+      // Update top bar
+      const info = sections[sectionId];
+      sectionTitle.textContent = info.title;
+      sectionMeta.textContent = info.meta;
+      currentSection = sectionId;
+
+      // Close mobile sidebar
+      closeSidebar();
+    }
+
+    // Click handler for sidebar links
+    sidebarLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navigateTo(link.dataset.section);
+      });
+    });
+
+    // ============================================================
+    // SIDEBAR TOGGLE (Mobile)
+    // ============================================================
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+
+    function openSidebar() {
+      sidebar.classList.remove('-translate-x-full');
+      sidebarBackdrop.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden', 'md:overflow-auto');
+    }
+
+    function closeSidebar() {
+      sidebar.classList.add('-translate-x-full');
+      sidebarBackdrop.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden', 'md:overflow-auto');
+    }
+
+    sidebarToggle.addEventListener('click', openSidebar);
+    sidebarBackdrop.addEventListener('click', closeSidebar);
+
+    // Close sidebar on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeSidebar();
+        closeAllDropdowns();
+      }
+    });
+
+    // ============================================================
+    // DARK MODE TOGGLE
+    // ============================================================
+    const darkModeToggle = document.getElementById('darkModeToggle');
+
+    // Check saved preference
+    if (localStorage.getItem('agenthub-dark') === 'true') {
+      document.documentElement.classList.add('dark');
+      darkModeToggle.checked = true;
+    }
+
+    darkModeToggle.addEventListener('change', () => {
+      if (darkModeToggle.checked) {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('agenthub-dark', 'true');
+      } else {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('agenthub-dark', 'false');
+      }
+    });
+
+    // ============================================================
+    // DROPDOWN SYSTEM (shared — will be used by all sections)
+    // ============================================================
+    let openDropdown = null;
+
+    function toggleDropdown(btnEl) {
+      const dropdown = btnEl.nextElementSibling;
+      if (!dropdown || !dropdown.classList.contains('dropdown-menu')) return;
+
+      if (openDropdown && openDropdown !== dropdown) {
+        closeDropdown(openDropdown);
+      }
+
+      if (dropdown.classList.contains('hidden')) {
+        dropdown.classList.remove('hidden');
+        openDropdown = dropdown;
+        positionDropdown(dropdown, btnEl);
+      } else {
+        closeDropdown(dropdown);
+      }
+    }
+
+    function closeDropdown(dropdown) {
+      dropdown.classList.add('hidden');
+      if (openDropdown === dropdown) openDropdown = null;
+    }
+
+    function closeAllDropdowns() {
+      document.querySelectorAll('.dropdown-menu:not(.hidden)').forEach(d => closeDropdown(d));
+    }
+
+    function positionDropdown(dropdown, btnEl) {
+      const rect = btnEl.getBoundingClientRect();
+      dropdown.style.position = 'fixed';
+      dropdown.style.top = (rect.bottom + 4) + 'px';
+      dropdown.style.left = Math.min(rect.right - 160, window.innerWidth - 180) + 'px';
+      dropdown.style.zIndex = '50';
+    }
+
+    // Close dropdowns on click outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.dropdown-container')) {
+        closeAllDropdowns();
+      }
+    });
+
+    // Close dropdowns on scroll
+    document.addEventListener('scroll', () => {
+      closeAllDropdowns();
+    }, true);
+
+    // ============================================================
+    // MODAL SYSTEM (shared — will be used by all sections)
+    // ============================================================
+    let activeModal = null;
+
+    function openModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (!modal) return;
+      modal.classList.remove('hidden');
+      activeModal = modal;
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(modalId) {
+      const modal = modalId ? document.getElementById(modalId) : activeModal;
+      if (!modal) return;
+      modal.classList.add('hidden');
+      activeModal = null;
+      document.body.style.overflow = '';
+    }
+
+    // Close modal on backdrop click
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('modal-backdrop')) {
+        closeModal();
+      }
+    });
+
+    // Close modal on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && activeModal) {
+        closeModal();
+      }
+    });
+
+    // ============================================================
+    // INIT: Set default active section
+    // ============================================================
+    navigateTo('dashboard');
+  </script>
+</body>
+</html>
