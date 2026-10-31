@@ -224,17 +224,472 @@
         </div>
 
         <!-- ============================================================ -->
-        <!-- SECTION: USERS (placeholder — next commit) -->
+        <!-- SECTION: USERS -->
         <!-- ============================================================ -->
         <div id="section-users" class="section-content">
-          <p class="text-slate-400 dark:text-slate-500">Sección de usuarios — próximamente.</p>
+          <!-- Header + Add button -->
+          <div class="flex items-center justify-between mb-6">
+            <div>
+              <h3 class="text-base font-semibold text-slate-700 dark:text-slate-300">
+                <i class="fa-solid fa-users mr-2 text-blue-500"></i>Usuarios Registrados
+              </h3>
+              <p class="text-xs text-slate-400 dark:text-slate-500 mt-1">Total: 6 usuarios</p>
+            </div>
+            <button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors shadow-sm">
+              <i class="fa-solid fa-plus mr-1"></i> Añadir Usuario
+            </button>
+          </div>
+
+          <!-- Users Table -->
+          <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50">
+                    <th class="text-left px-4 py-3 font-semibold text-slate-600 dark:text-slate-400 text-xs uppercase tracking-wider">Nombre</th>
+                    <th class="text-left px-4 py-3 font-semibold text-slate-600 dark:text-slate-400 text-xs uppercase tracking-wider">Email</th>
+                    <th class="text-left px-4 py-3 font-semibold text-slate-600 dark:text-slate-400 text-xs uppercase tracking-wider">Plan</th>
+                    <th class="text-left px-4 py-3 font-semibold text-slate-600 dark:text-slate-400 text-xs uppercase tracking-wider">Estado</th>
+                    <th class="text-right px-4 py-3 font-semibold text-slate-600 dark:text-slate-400 text-xs uppercase tracking-wider">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b border-slate-100 dark:border-slate-700/50 hover:bg-slate-50 dark:hover:bg-slate-700/30 transition-colors" data-user-id="1">
+                    <td class="px-4 py-3 font-medium text-slate-800 dark:text-slate-200">Carlos Mendoza</td>
+                    <td class="px-4 py-3 text-slate-500 dark:text-slate-400">carlos.mendoza@empresa.com</td>
+                    <td class="px-4 py-3"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400">Enterprise</span></td>
+                    <td class="px-4 py-3"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">Activo</span></td>
+                    <td class="px-4 py-3 text-right dropdown-container">
+                      <button onclick="toggleDropdown(this)" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 dark:text-slate-500 transition-colors">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                      </button>
+                      <div class="dropdown-menu hidden fixed z-50 w-44 bg-white dark:bg-slate-700 rounded-lg shadow-lg border border-slate-200 dark:border-slate-600 py-1">
+                        <button onclick="openModal('modal-user-1')" class="w-full text-left px-3 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors flex items-center gap-2">
+                          <i class="fa-solid fa-eye text-slate-400"></i> Ver detalle
+                        </button>
+                        <button onclick="if(confirm('¿Eliminar usuario Carlos Mendoza?'))this.closest('tr').remove()" class="w-full text-left px-3 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors flex items-center gap-2">
+                          <i class="fa-solid fa-trash-can"></i> Eliminar
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr class="border-b border-slate-100 dark:border-slate-700/50 hover:bg-slate-50 dark:hover:bg-slate-700/30 transition-colors" data-user-id="2">
+                    <td class="px-4 py-3 font-medium text-slate-800 dark:text-slate-200">Ana García</td>
+                    <td class="px-4 py-3 text-slate-500 dark:text-slate-400">ana.garcia@startup.io</td>
+                    <td class="px-4 py-3"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400">Pro</span></td>
+                    <td class="px-4 py-3"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">Activo</span></td>
+                    <td class="px-4 py-3 text-right dropdown-container">
+                      <button onclick="toggleDropdown(this)" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 dark:text-slate-500 transition-colors">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                      </button>
+                      <div class="dropdown-menu hidden fixed z-50 w-44 bg-white dark:bg-slate-700 rounded-lg shadow-lg border border-slate-200 dark:border-slate-600 py-1">
+                        <button onclick="openModal('modal-user-2')" class="w-full text-left px-3 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors flex items-center gap-2">
+                          <i class="fa-solid fa-eye text-slate-400"></i> Ver detalle
+                        </button>
+                        <button onclick="if(confirm('¿Eliminar usuario Ana García?'))this.closest('tr').remove()" class="w-full text-left px-3 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors flex items-center gap-2">
+                          <i class="fa-solid fa-trash-can"></i> Eliminar
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr class="border-b border-slate-100 dark:border-slate-700/50 hover:bg-slate-50 dark:hover:bg-slate-700/30 transition-colors" data-user-id="3">
+                    <td class="px-4 py-3 font-medium text-slate-800 dark:text-slate-200">Roberto Silva</td>
+                    <td class="px-4 py-3 text-slate-500 dark:text-slate-400">roberto@techcorp.com</td>
+                    <td class="px-4 py-3"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400">Enterprise</span></td>
+                    <td class="px-4 py-3"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400">Inactivo</span></td>
+                    <td class="px-4 py-3 text-right dropdown-container">
+                      <button onclick="toggleDropdown(this)" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 dark:text-slate-500 transition-colors">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                      </button>
+                      <div class="dropdown-menu hidden fixed z-50 w-44 bg-white dark:bg-slate-700 rounded-lg shadow-lg border border-slate-200 dark:border-slate-600 py-1">
+                        <button onclick="openModal('modal-user-3')" class="w-full text-left px-3 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors flex items-center gap-2">
+                          <i class="fa-solid fa-eye text-slate-400"></i> Ver detalle
+                        </button>
+                        <button onclick="if(confirm('¿Eliminar usuario Roberto Silva?'))this.closest('tr').remove()" class="w-full text-left px-3 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors flex items-center gap-2">
+                          <i class="fa-solid fa-trash-can"></i> Eliminar
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr class="border-b border-slate-100 dark:border-slate-700/50 hover:bg-slate-50 dark:hover:bg-slate-700/30 transition-colors" data-user-id="4">
+                    <td class="px-4 py-3 font-medium text-slate-800 dark:text-slate-200">Laura Jiménez</td>
+                    <td class="px-4 py-3 text-slate-500 dark:text-slate-400">laura@designlab.co</td>
+                    <td class="px-4 py-3"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-400">Free</span></td>
+                    <td class="px-4 py-3"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">Activo</span></td>
+                    <td class="px-4 py-3 text-right dropdown-container">
+                      <button onclick="toggleDropdown(this)" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 dark:text-slate-500 transition-colors">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                      </button>
+                      <div class="dropdown-menu hidden fixed z-50 w-44 bg-white dark:bg-slate-700 rounded-lg shadow-lg border border-slate-200 dark:border-slate-600 py-1">
+                        <button onclick="openModal('modal-user-4')" class="w-full text-left px-3 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors flex items-center gap-2">
+                          <i class="fa-solid fa-eye text-slate-400"></i> Ver detalle
+                        </button>
+                        <button onclick="if(confirm('¿Eliminar usuario Laura Jiménez?'))this.closest('tr').remove()" class="w-full text-left px-3 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors flex items-center gap-2">
+                          <i class="fa-solid fa-trash-can"></i> Eliminar
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr class="border-b border-slate-100 dark:border-slate-700/50 hover:bg-slate-50 dark:hover:bg-slate-700/30 transition-colors" data-user-id="5">
+                    <td class="px-4 py-3 font-medium text-slate-800 dark:text-slate-200">Miguel Torres</td>
+                    <td class="px-4 py-3 text-slate-500 dark:text-slate-400">mtorres@financeapp.com</td>
+                    <td class="px-4 py-3"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400">Pro</span></td>
+                    <td class="px-4 py-3"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400">Suspendido</span></td>
+                    <td class="px-4 py-3 text-right dropdown-container">
+                      <button onclick="toggleDropdown(this)" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 dark:text-slate-500 transition-colors">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                      </button>
+                      <div class="dropdown-menu hidden fixed z-50 w-44 bg-white dark:bg-slate-700 rounded-lg shadow-lg border border-slate-200 dark:border-slate-600 py-1">
+                        <button onclick="openModal('modal-user-5')" class="w-full text-left px-3 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors flex items-center gap-2">
+                          <i class="fa-solid fa-eye text-slate-400"></i> Ver detalle
+                        </button>
+                        <button onclick="if(confirm('¿Eliminar usuario Miguel Torres?'))this.closest('tr').remove()" class="w-full text-left px-3 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors flex items-center gap-2">
+                          <i class="fa-solid fa-trash-can"></i> Eliminar
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr class="border-b-0 border-slate-100 dark:border-slate-700/50 hover:bg-slate-50 dark:hover:bg-slate-700/30 transition-colors" data-user-id="6">
+                    <td class="px-4 py-3 font-medium text-slate-800 dark:text-slate-200">Sofía López</td>
+                    <td class="px-4 py-3 text-slate-500 dark:text-slate-400">sofia@healthdata.org</td>
+                    <td class="px-4 py-3"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400">Enterprise</span></td>
+                    <td class="px-4 py-3"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">Activo</span></td>
+                    <td class="px-4 py-3 text-right dropdown-container">
+                      <button onclick="toggleDropdown(this)" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 dark:text-slate-500 transition-colors">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                      </button>
+                      <div class="dropdown-menu hidden fixed z-50 w-44 bg-white dark:bg-slate-700 rounded-lg shadow-lg border border-slate-200 dark:border-slate-600 py-1">
+                        <button onclick="openModal('modal-user-6')" class="w-full text-left px-3 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors flex items-center gap-2">
+                          <i class="fa-solid fa-eye text-slate-400"></i> Ver detalle
+                        </button>
+                        <button onclick="if(confirm('¿Eliminar usuario Sofía López?'))this.closest('tr').remove()" class="w-full text-left px-3 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors flex items-center gap-2">
+                          <i class="fa-solid fa-trash-can"></i> Eliminar
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
 
-        <!-- ============================================================ -->
-        <!-- SECTION: AGENTS (placeholder — next commit) -->
-        <!-- ============================================================ -->
-        <div id="section-agents" class="section-content">
-          <p class="text-slate-400 dark:text-slate-500">Sección de agentes — próximamente.</p>
+        <!-- ===== USER MODALS ===== -->
+        <!-- Modal User 1: Carlos Mendoza -->
+        <div id="modal-user-1" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div class="modal-backdrop fixed inset-0 bg-black/50 backdrop-blur-sm"></div>
+          <div class="relative bg-white dark:bg-slate-800 rounded-xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between p-5 border-b border-slate-200 dark:border-slate-700">
+              <h3 class="text-lg font-semibold text-slate-800 dark:text-white flex items-center gap-2">
+                <i class="fa-solid fa-user text-blue-500"></i> Carlos Mendoza
+              </h3>
+              <button onclick="closeModal('modal-user-1')" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 transition-colors">
+                <i class="fa-solid fa-xmark text-xl"></i>
+              </button>
+            </div>
+            <div class="p-5 space-y-4">
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Email</p>
+                  <p class="text-sm text-slate-700 dark:text-slate-300 mt-1">carlos.mendoza@empresa.com</p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Plan</p>
+                  <p class="text-sm mt-1"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400">Enterprise</span></p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Estado</p>
+                  <p class="text-sm mt-1"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">Activo</span></p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Empresa</p>
+                  <p class="text-sm text-slate-700 dark:text-slate-300 mt-1">Empresa Tech S.A.</p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Fecha de Registro</p>
+                  <p class="text-sm text-slate-700 dark:text-slate-300 mt-1">15/03/2026</p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Última Sesión</p>
+                  <p class="text-sm text-slate-700 dark:text-slate-300 mt-1">28/10/2026</p>
+                </div>
+              </div>
+              <div class="pt-3 border-t border-slate-100 dark:border-slate-700">
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-1">Agentes contratados</p>
+                <p class="text-sm text-slate-700 dark:text-slate-300">3 agentes activos</p>
+              </div>
+            </div>
+            <div class="px-5 pb-5">
+              <button onclick="closeModal('modal-user-1')" class="w-full py-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium transition-colors">
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal User 2: Ana García -->
+        <div id="modal-user-2" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div class="modal-backdrop fixed inset-0 bg-black/50 backdrop-blur-sm"></div>
+          <div class="relative bg-white dark:bg-slate-800 rounded-xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between p-5 border-b border-slate-200 dark:border-slate-700">
+              <h3 class="text-lg font-semibold text-slate-800 dark:text-white flex items-center gap-2">
+                <i class="fa-solid fa-user text-blue-500"></i> Ana García
+              </h3>
+              <button onclick="closeModal('modal-user-2')" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 transition-colors">
+                <i class="fa-solid fa-xmark text-xl"></i>
+              </button>
+            </div>
+            <div class="p-5 space-y-4">
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Email</p>
+                  <p class="text-sm text-slate-700 dark:text-slate-300 mt-1">ana.garcia@startup.io</p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Plan</p>
+                  <p class="text-sm mt-1"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400">Pro</span></p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Estado</p>
+                  <p class="text-sm mt-1"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">Activo</span></p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Empresa</p>
+                  <p class="text-sm text-slate-700 dark:text-slate-300 mt-1">Startup IO</p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Fecha de Registro</p>
+                  <p class="text-sm text-slate-700 dark:text-slate-300 mt-1">02/06/2026</p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Última Sesión</p>
+                  <p class="text-sm text-slate-700 dark:text-slate-300 mt-1">31/10/2026</p>
+                </div>
+              </div>
+              <div class="pt-3 border-t border-slate-100 dark:border-slate-700">
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-1">Agentes contratados</p>
+                <p class="text-sm text-slate-700 dark:text-slate-300">1 agente activo</p>
+              </div>
+            </div>
+            <div class="px-5 pb-5">
+              <button onclick="closeModal('modal-user-2')" class="w-full py-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium transition-colors">
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal User 3: Roberto Silva -->
+        <div id="modal-user-3" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div class="modal-backdrop fixed inset-0 bg-black/50 backdrop-blur-sm"></div>
+          <div class="relative bg-white dark:bg-slate-800 rounded-xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between p-5 border-b border-slate-200 dark:border-slate-700">
+              <h3 class="text-lg font-semibold text-slate-800 dark:text-white flex items-center gap-2">
+                <i class="fa-solid fa-user text-blue-500"></i> Roberto Silva
+              </h3>
+              <button onclick="closeModal('modal-user-3')" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 transition-colors">
+                <i class="fa-solid fa-xmark text-xl"></i>
+              </button>
+            </div>
+            <div class="p-5 space-y-4">
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Email</p>
+                  <p class="text-sm text-slate-700 dark:text-slate-300 mt-1">roberto@techcorp.com</p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Plan</p>
+                  <p class="text-sm mt-1"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400">Enterprise</span></p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Estado</p>
+                  <p class="text-sm mt-1"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400">Inactivo</span></p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Empresa</p>
+                  <p class="text-sm text-slate-700 dark:text-slate-300 mt-1">TechCorp Inc.</p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Fecha de Registro</p>
+                  <p class="text-sm text-slate-700 dark:text-slate-300 mt-1">20/01/2026</p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Última Sesión</p>
+                  <p class="text-sm text-slate-700 dark:text-slate-300 mt-1">15/09/2026</p>
+                </div>
+              </div>
+              <div class="pt-3 border-t border-slate-100 dark:border-slate-700">
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-1">Agentes contratados</p>
+                <p class="text-sm text-slate-700 dark:text-slate-300">0 agentes activos (plan pausado)</p>
+              </div>
+            </div>
+            <div class="px-5 pb-5">
+              <button onclick="closeModal('modal-user-3')" class="w-full py-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium transition-colors">
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal User 4: Laura Jiménez -->
+        <div id="modal-user-4" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div class="modal-backdrop fixed inset-0 bg-black/50 backdrop-blur-sm"></div>
+          <div class="relative bg-white dark:bg-slate-800 rounded-xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between p-5 border-b border-slate-200 dark:border-slate-700">
+              <h3 class="text-lg font-semibold text-slate-800 dark:text-white flex items-center gap-2">
+                <i class="fa-solid fa-user text-blue-500"></i> Laura Jiménez
+              </h3>
+              <button onclick="closeModal('modal-user-4')" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 transition-colors">
+                <i class="fa-solid fa-xmark text-xl"></i>
+              </button>
+            </div>
+            <div class="p-5 space-y-4">
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Email</p>
+                  <p class="text-sm text-slate-700 dark:text-slate-300 mt-1">laura@designlab.co</p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Plan</p>
+                  <p class="text-sm mt-1"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-400">Free</span></p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Estado</p>
+                  <p class="text-sm mt-1"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">Activo</span></p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Empresa</p>
+                  <p class="text-sm text-slate-700 dark:text-slate-300 mt-1">DesignLab Co.</p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Fecha de Registro</p>
+                  <p class="text-sm text-slate-700 dark:text-slate-300 mt-1">10/08/2026</p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Última Sesión</p>
+                  <p class="text-sm text-slate-700 dark:text-slate-300 mt-1">30/10/2026</p>
+                </div>
+              </div>
+              <div class="pt-3 border-t border-slate-100 dark:border-slate-700">
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-1">Agentes contratados</p>
+                <p class="text-sm text-slate-700 dark:text-slate-300">0 agentes (plan gratuito)</p>
+              </div>
+            </div>
+            <div class="px-5 pb-5">
+              <button onclick="closeModal('modal-user-4')" class="w-full py-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium transition-colors">
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal User 5: Miguel Torres -->
+        <div id="modal-user-5" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div class="modal-backdrop fixed inset-0 bg-black/50 backdrop-blur-sm"></div>
+          <div class="relative bg-white dark:bg-slate-800 rounded-xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between p-5 border-b border-slate-200 dark:border-slate-700">
+              <h3 class="text-lg font-semibold text-slate-800 dark:text-white flex items-center gap-2">
+                <i class="fa-solid fa-user text-blue-500"></i> Miguel Torres
+              </h3>
+              <button onclick="closeModal('modal-user-5')" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 transition-colors">
+                <i class="fa-solid fa-xmark text-xl"></i>
+              </button>
+            </div>
+            <div class="p-5 space-y-4">
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Email</p>
+                  <p class="text-sm text-slate-700 dark:text-slate-300 mt-1">mtorres@financeapp.com</p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Plan</p>
+                  <p class="text-sm mt-1"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400">Pro</span></p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Estado</p>
+                  <p class="text-sm mt-1"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400">Suspendido</span></p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Empresa</p>
+                  <p class="text-sm text-slate-700 dark:text-slate-300 mt-1">FinanceApp Inc.</p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Fecha de Registro</p>
+                  <p class="text-sm text-slate-700 dark:text-slate-300 mt-1">05/04/2026</p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Última Sesión</p>
+                  <p class="text-sm text-slate-700 dark:text-slate-300 mt-1">12/10/2026</p>
+                </div>
+              </div>
+              <div class="pt-3 border-t border-slate-100 dark:border-slate-700">
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-1">Motivo de suspensión</p>
+                <p class="text-sm text-slate-700 dark:text-slate-300">Pago pendiente desde 01/10/2026</p>
+              </div>
+            </div>
+            <div class="px-5 pb-5">
+              <button onclick="closeModal('modal-user-5')" class="w-full py-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium transition-colors">
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal User 6: Sofía López -->
+        <div id="modal-user-6" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div class="modal-backdrop fixed inset-0 bg-black/50 backdrop-blur-sm"></div>
+          <div class="relative bg-white dark:bg-slate-800 rounded-xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between p-5 border-b border-slate-200 dark:border-slate-700">
+              <h3 class="text-lg font-semibold text-slate-800 dark:text-white flex items-center gap-2">
+                <i class="fa-solid fa-user text-blue-500"></i> Sofía López
+              </h3>
+              <button onclick="closeModal('modal-user-6')" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 transition-colors">
+                <i class="fa-solid fa-xmark text-xl"></i>
+              </button>
+            </div>
+            <div class="p-5 space-y-4">
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Email</p>
+                  <p class="text-sm text-slate-700 dark:text-slate-300 mt-1">sofia@healthdata.org</p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Plan</p>
+                  <p class="text-sm mt-1"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400">Enterprise</span></p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Estado</p>
+                  <p class="text-sm mt-1"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">Activo</span></p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Empresa</p>
+                  <p class="text-sm text-slate-700 dark:text-slate-300 mt-1">HealthData Org</p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Fecha de Registro</p>
+                  <p class="text-sm text-slate-700 dark:text-slate-300 mt-1">18/09/2026</p>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">Última Sesión</p>
+                  <p class="text-sm text-slate-700 dark:text-slate-300 mt-1">31/10/2026</p>
+                </div>
+              </div>
+              <div class="pt-3 border-t border-slate-100 dark:border-slate-700">
+                <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium mb-1">Agentes contratados</p>
+                <p class="text-sm text-slate-700 dark:text-slate-300">2 agentes activos</p>
+              </div>
+            </div>
+            <div class="px-5 pb-5">
+              <button onclick="closeModal('modal-user-6')" class="w-full py-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium transition-colors">
+                Cerrar
+              </button>
+            </div>
+          </div>
         </div>
 
         <!-- ============================================================ -->
